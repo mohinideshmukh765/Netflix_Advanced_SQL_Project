@@ -1,7 +1,7 @@
 # 📺 Netflix Data Analysis Project (PostgreSQL)
 
 ![Netflix_Logo](https://github.com/mohinideshmukh765/Netflix_Advanced_SQL_Project/blob/main/Netflix_Logo.png)
-
+#
 
 
 ## 📌 Overview
@@ -13,14 +13,14 @@ This project analyzes the Netflix dataset using SQL in PostgreSQL. It focuses on
 ### Database: PostgreSQL
 ### Tool: pgAdmin
 ### Language: SQL
-
+#
 
 
 ## 📂 Dataset
 ### File: netflix_titles.csv
 ### Source: Kaggle – Netflix Movies and TV Shows Dataset
 ### Link: https://www.kaggle.com/datasets/shivamb/netflix-shows
-
+#
 
 ## Description:
 The dataset contains:
@@ -30,7 +30,7 @@ Title, Director, Cast
 Country, Release Year
 Rating, Duration
 Genre (listed_in)
-
+#
 
 
 ## Description
@@ -51,6 +51,7 @@ CREATE TABLE netflix (
     description VARCHAR(250)
 );
 ```
+#
 
 
 
@@ -63,7 +64,7 @@ CSV HEADER
 QUOTE '"'
 NULL '';
 ```
-
+#
 ## 📊 Business Problems & SQL Queries
 
 **1. Count Movies vs TV Shows**
@@ -212,14 +213,22 @@ FROM (
 ) AS categorized_content
 GROUP BY category;
 ```
+#
 
 
 ## 🔍 Key SQL Concepts Used
 **Aggregate Functions (COUNT)**
+
 **Window Functions (RANK)**
+
 **String Functions (STRING_TO_ARRAY, SPLIT_PART)**
+
 **Date Functions (TO_DATE, CURRENT_DATE)**
+
 **Conditional Logic (CASE)**
+
 **CTEs (Common Table Expressions)**
+
 **Data Cleaning & Transformation**
 
+#
