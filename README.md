@@ -1,20 +1,21 @@
 📺 Netflix Data Analysis Project (PostgreSQL)
 
 ![Netflix_Logo](https://github.com/mohinideshmukh765/Netflix_Advanced_SQL_Project/blob/main/Netflix_Logo.png)
-📌 Overview
+
+##📌 Overview
 This project analyzes the Netflix dataset using SQL in PostgreSQL. It focuses on extracting meaningful insights from raw CSV data by performing data cleaning, transformation, and analytical querying. The dataset includes information about movies and TV shows such as title, director, cast, country, release year, rating, and genre.
 
-🛠️ Tech Stack
-Database: PostgreSQL
-Tool: pgAdmin
-Language: SQL
+##🛠️ Tech Stack
+###Database: PostgreSQL
+###Tool: pgAdmin
+###Language: SQL
 
-📂 Dataset
-File: netflix_titles.csv
-Source: Kaggle – Netflix Movies and TV Shows Dataset
-Link: https://www.kaggle.com/datasets/shivamb/netflix-shows
+##📂 Dataset
+###File: netflix_titles.csv
+###Source: Kaggle – Netflix Movies and TV Shows Dataset
+###Link: https://www.kaggle.com/datasets/shivamb/netflix-shows
 
-Description:
+##Description:
 The dataset contains:
 Movies and TV Shows available on Netflix
 Metadata fields:
@@ -23,7 +24,7 @@ Country, Release Year
 Rating, Duration
 Genre (listed_in)
 
-Description
+##Description
 🧱 Database Schema
 CREATE TABLE netflix ( 
     show_id VARCHAR(6),
@@ -41,7 +42,7 @@ CREATE TABLE netflix (
 );
 
 
-Used PostgreSQL COPY command:
+###Used PostgreSQL COPY command:
 COPY netflix(show_id, type, title, director, casts, country, date_added, release_year, rating, duration, listed_in, description)
 FROM 'C:\\Users\\Mohin\\OneDrive\\Desktop\\Placements\\Projects\\Netflix\\netflix_titles.csv'
 DELIMITER ','
@@ -50,7 +51,7 @@ QUOTE '"'
 NULL '';
 
 
-📊 Business Problems & SQL Queries
+##📊 Business Problems & SQL Queries
 
 1. Count Movies vs TV Shows
 SELECT type, COUNT(*) AS total_content
