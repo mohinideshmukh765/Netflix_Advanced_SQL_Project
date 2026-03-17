@@ -3,14 +3,17 @@
 ![Netflix_Logo](https://github.com/mohinideshmukh765/Netflix_Advanced_SQL_Project/blob/main/Netflix_Logo.png)
 
 
+
 ## 📌 Overview
 This project analyzes the Netflix dataset using SQL in PostgreSQL. It focuses on extracting meaningful insights from raw CSV data by performing data cleaning, transformation, and analytical querying. The dataset includes information about movies and TV shows such as title, director, cast, country, release year, rating, and genre.
+
 
 
 ## 🛠️ Tech Stack
 ### Database: PostgreSQL
 ### Tool: pgAdmin
 ### Language: SQL
+
 
 
 ## 📂 Dataset
@@ -28,9 +31,11 @@ Country, Release Year
 Rating, Duration
 Genre (listed_in)
 
+
+
 ## Description
 **🧱 Database Schema**
-'''sql
+```sql
 CREATE TABLE netflix ( 
     show_id VARCHAR(6),
     type VARCHAR(10),    
@@ -45,27 +50,31 @@ CREATE TABLE netflix (
     listed_in VARCHAR(100),
     description VARCHAR(250)
 );
-'''
+```
+
 
 
 ### Used PostgreSQL COPY command:
-
+```sql
 COPY netflix(show_id, type, title, director, casts, country, date_added, release_year, rating, duration, listed_in, description)
 FROM 'C:\\Users\\Mohin\\OneDrive\\Desktop\\Placements\\Projects\\Netflix\\netflix_titles.csv'
 DELIMITER ','
 CSV HEADER
 QUOTE '"'
 NULL '';
-
+```
 
 ## 📊 Business Problems & SQL Queries
 
 **1. Count Movies vs TV Shows**
+```sql
 SELECT type, COUNT(*) AS total_content
 FROM netflix
 GROUP BY type;
+```
 
 **2. Most Common Rating per Type**
+```sql
 WITH RatingCounts AS (
     SELECT type, rating, COUNT(*) AS rating_count
     FROM netflix
@@ -79,13 +88,17 @@ RankedRatings AS (
 SELECT type, rating AS most_frequent_rating
 FROM RankedRatings
 WHERE rank = 1;
+```
 
 **3. Movies Released in 2020**
+```sql
 SELECT * 
 FROM netflix
 WHERE release_year = 2020;
+```
 
 **4. Top 5 Countries with Most Content**
+```sql
 SELECT *
 FROM (
     SELECT UNNEST(STRING_TO_ARRAY(country, ',')) AS country,
@@ -96,39 +109,51 @@ FROM (
 WHERE country IS NOT NULL
 ORDER BY total_content DESC
 LIMIT 5;
+```
 
 **5. Longest Movie**
+```sql
 SELECT *
 FROM netflix
 WHERE type = 'Movie'
 ORDER BY SPLIT_PART(duration, ' ', 1)::INT DESC;
+```
 
 **6. Content Added in Last 5 Years**
+```sql
 SELECT *
 FROM netflix
 WHERE TO_DATE(date_added, 'Month DD, YYYY') >= CURRENT_DATE - INTERVAL '5 years';
+```
 
 **7. Content by Director 'Rajiv Chilaka'**
+```sql
 SELECT *
 FROM (
     SELECT *, UNNEST(STRING_TO_ARRAY(director, ',')) AS director_name
     FROM netflix
 ) AS t
 WHERE director_name = 'Rajiv Chilaka';
+```
 
 **8. TV Shows with More Than 5 Seasons**
+```sql
 SELECT *
 FROM netflix
 WHERE type = 'TV Show'
 AND SPLIT_PART(duration, ' ', 1)::INT > 5;
+```
 
 **9. Content Count by Genre**
+```sql
 SELECT UNNEST(STRING_TO_ARRAY(listed_in, ',')) AS genre,
        COUNT(*) AS total_content
 FROM netflix
 GROUP BY 1;
+```
 
 **10. Year-wise Content Release in India**
+```sql
 SELECT country, release_year,
        COUNT(show_id) AS total_release,
        ROUND(
@@ -140,25 +165,32 @@ WHERE country = 'India'
 GROUP BY country, release_year
 ORDER BY avg_release DESC
 LIMIT 5;
+```
 
 **11. Documentary Movies**
+```sql
 SELECT *
 FROM netflix
 WHERE listed_in LIKE '%Documentaries';
+```
 
 **12. Content Without Director**
+```sql
 SELECT *
 FROM netflix
 WHERE director IS NULL;
+```
 
 **13. Movies Featuring Salman Khan (Last 10 Years)**
+```sql
 SELECT *
 FROM netflix
 WHERE casts LIKE '%Salman Khan%'
 AND release_year > EXTRACT(YEAR FROM CURRENT_DATE) - 10;
-
+```
 
 **14. Top 10 Actors in Indian Content**
+```sql
 SELECT UNNEST(STRING_TO_ARRAY(casts, ',')) AS actor,
        COUNT(*)
 FROM netflix
@@ -166,8 +198,10 @@ WHERE country = 'India'
 GROUP BY actor
 ORDER BY COUNT(*) DESC
 LIMIT 10;
+```
 
 **15. Content Categorization (Violence/Kill Keywords)**
+```sql
 SELECT category, COUNT(*) AS content_count
 FROM (
     SELECT CASE 
@@ -177,14 +211,15 @@ FROM (
     FROM netflix
 ) AS categorized_content
 GROUP BY category;
+```
 
 
 ## 🔍 Key SQL Concepts Used
-Aggregate Functions (COUNT)
-Window Functions (RANK)
-String Functions (STRING_TO_ARRAY, SPLIT_PART)
-Date Functions (TO_DATE, CURRENT_DATE)
-Conditional Logic (CASE)
-CTEs (Common Table Expressions)
-Data Cleaning & Transformation
+**Aggregate Functions (COUNT)**
+**Window Functions (RANK)**
+**String Functions (STRING_TO_ARRAY, SPLIT_PART)**
+**Date Functions (TO_DATE, CURRENT_DATE)**
+**Conditional Logic (CASE)**
+**CTEs (Common Table Expressions)**
+**Data Cleaning & Transformation**
 
