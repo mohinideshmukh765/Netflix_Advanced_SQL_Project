@@ -1,6 +1,6 @@
 📺 Netflix Data Analysis Project (PostgreSQL)
 
-|[Netflix_Logo](https://github.com/mohinideshmukh765/Netflix_Advanced_SQL_Project/blob/main/Netflix_Logo.png)
+![Netflix_Logo](https://github.com/mohinideshmukh765/Netflix_Advanced_SQL_Project/blob/main/Netflix_Logo.png)
 📌 Overview
 This project analyzes the Netflix dataset using SQL in PostgreSQL. It focuses on extracting meaningful insights from raw CSV data by performing data cleaning, transformation, and analytical querying. The dataset includes information about movies and TV shows such as title, director, cast, country, release year, rating, and genre.
 
