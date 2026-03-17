@@ -6,7 +6,7 @@
 
 ## 📌 Overview
 This project analyzes the Netflix dataset using SQL in PostgreSQL. It focuses on extracting meaningful insights from raw CSV data by performing data cleaning, transformation, and analytical querying. The dataset includes information about movies and TV shows such as title, director, cast, country, release year, rating, and genre.
-
+#
 
 
 ## 🛠️ Tech Stack
